@@ -10,8 +10,11 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '../lib/actions';
+import { useState } from 'react';
 
 export default function LoginForm() {
+  const [username, setUsername] = useState('user@nextmail.com');
+  const [password, setPassword] = useState('123456');
   const [state, dispatch] = useFormState(authenticate, undefined);
 
   return (
@@ -35,6 +38,7 @@ export default function LoginForm() {
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
+                value={username}
                 required
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -56,6 +60,7 @@ export default function LoginForm() {
                 placeholder="Enter password"
                 required
                 minLength={6}
+                value={password}
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
